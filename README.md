@@ -24,15 +24,19 @@ Dan yang ingin membantu Menyelesaikan UI nya...
 Berikut Refrensi Design yang saya sarankan
 
 #OnBoarding -> need Good Vector Please Contact Me
+(https://assets.materialup.com/uploads/43fd5ab8-cdbb-4877-8a84-5a9433a93818/preview.jpg
 ![alt text](https://assets.materialup.com/uploads/43fd5ab8-cdbb-4877-8a84-5a9433a93818/preview.jpg)
 
 #List Buku -> Gambar nya dummy dulu yah
+https://assets.materialup.com/uploads/7fb04407-05d9-44ae-8516-0922e90b7291/preview.png
 ![alt text](https://assets.materialup.com/uploads/7fb04407-05d9-44ae-8516-0922e90b7291/preview.png)
 
 #List Streaming Pengajian
+https://cdn.dribbble.com/users/1165321/screenshots/4830530/shot32_final_1x.png
 ![alt text](https://cdn.dribbble.com/users/1165321/screenshots/4830530/shot32_final_1x.png)
 
 #treaming Pengajian -> Video Player nya Buat Aja Container
+(https://cdn.dribbble.com/users/1192372/screenshots/6549290/hb_dribbble_2x_2x.png
 ![alt text](https://cdn.dribbble.com/users/1192372/screenshots/6549290/hb_dribbble_2x_2x.png)
 
 #Notice
