@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "433912045908",
+    "firebase_url": "https://utawi-iku.firebaseio.com",
+    "project_id": "utawi-iku",
+    "storage_bucket": "utawi-iku.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433912045908:android:1d366634784a8ba1",
+        "android_client_info": {
+          "package_name": "com.example.utawi_iku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "433912045908-qtaaq82e5o1fjahth1h21nsihpcabbq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjSoVAqXMkeClk8OlTpylpqGITZSnIHas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "433912045908-qtaaq82e5o1fjahth1h21nsihpcabbq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
