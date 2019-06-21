@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:utawi_iku/layout.dart';
 import 'package:utawi_iku/login.dart';
 import 'package:utawi_iku/signup.dart';
+import 'package:flutter/scheduler.dart';
 
 void main() => runApp(Welcome());
 
@@ -17,6 +18,7 @@ class _WelcomeState extends State<Welcome> {
   void initState() { 
     super.initState();
     double size1 =  1.8;
+    timeDilation = 3.0;
   }
  
   var _desc = "is an application for you to explore Islamic sources of literacy and also discuss here to find religious solutions";

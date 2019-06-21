@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
+import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 void main() => runApp(Dashboard());
@@ -12,6 +14,13 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  int _currentIndex = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    timeDilation = 1.0;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,10 +40,10 @@ class _DashboardState extends State<Dashboard> {
                 Row(
                   children: <Widget>[
                     Container(
-                      width: 60.0,
-                      height: 60.0,
+                      width: 55.0,
+                      height: 55.0,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(27.5),
                         color: Colors.grey[300],
                         image: DecorationImage(
                           image: NetworkImage("https://pbs.twimg.com/profile_images/864282616597405701/M-FEJMZ0_400x400.jpg"),
@@ -159,12 +168,83 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   ),
-                )
+                ),
+                                SizedBox(height: 16.0,),
+                Container(
+                  width: double.infinity,
+                  height: 150.0,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text("Fathul Qorib", style: TextStyle(fontFamily: "Regular", fontSize: 16.0, fontWeight: FontWeight.w600,),),
+                            Text("Pembahasan Bab\nPernikahan", style: TextStyle(fontFamily: "Regular", fontSize: 18.0, fontWeight: FontWeight.w600,),),
+                            Container(
+                              width: 60.0,
+                              height: 30.0,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(5.0)
+                              ),
+                              child: Center(
+                                child:  Text("Fiqih", style: TextStyle(fontFamily: "Regular", fontSize: 14.0, fontWeight: FontWeight.w600, color: Colors.white),),
+                              )
+                            )
+                          ],
+                        ),
+                        Container(
+                          height: double.infinity,
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(10.0),
+                            image: DecorationImage(
+                              image: NetworkImage("https://i.pinimg.com/originals/ac/44/ab/ac44abd4e5f1edf861fe517ae5aff537.jpg"),
+                              fit: BoxFit.cover
+                            )
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ],
             )
           ],
         ),
       ),
+  bottomNavigationBar: BubbleBottomBar(
+        opacity: .2,
+        currentIndex: _currentIndex,
+        onTap: (index){
+          setState(() {
+           _currentIndex = index; 
+          });
+        },
+        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+        elevation: 8,
+        fabLocation: BubbleBottomBarFabLocation.center, //new
+        hasNotch: true, //new
+        hasInk: true, //new, gives a cute ink effect
+        inkColor: Colors.black12, //optional, uses theme color if not specified
+        items: <BubbleBottomBarItem>[
+            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.home, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.home, color: Colors.blue,), title: Text("Home")),
+            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.book, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.book, color: Colors.blue,), title: Text("Baca")),
+            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.fileVideo, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.fileVideo, color: Colors.blue,), title: Text("Ngaji")),
+            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.accountGroupOutline, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.accountGroupOutline, color: Colors.blue,), title: Text("Diskusi")),
+            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.accountCircle, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.accountCircle, color: Colors.blue,), title: Text("Akun"))
+        ],
+      )
     );
   }
 }
