@@ -1,26 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:utawi_iku/akun.dart';
+import 'package:utawi_iku/diskusi.dart';
+import 'package:utawi_iku/kitab.dart';
+import 'package:utawi_iku/ngaji.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(Dashboard());
 
+
 class Dashboard extends StatefulWidget {
+  
   Dashboard({Key key}) : super(key: key);
 
   _DashboardState createState() => _DashboardState();
+
 }
 
-class _DashboardState extends State<Dashboard> {
+
+var page = [
+  Dashboard(),
+  Kitab(),
+  Ngaji(),
+  Diskusi(),
+  Akun(),
+];
+
+
+class _DashboardState extends State<Dashboard> with WidgetsBindingObserver {
+
   int _currentIndex = 0;
+   int _bottomNavCurrentIndex = 0;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    timeDilation = 1.0;
+    timeDilation = 2.0;
+    WidgetsBinding.instance.addObserver(this);
   }
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +94,7 @@ class _DashboardState extends State<Dashboard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      width: 140.0,
+                      width: MediaQuery.of(context).size.width / 3,
                       height: 150.0,
                       decoration: BoxDecoration(
                         color: Colors.grey[300],
@@ -82,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
                       ),
                     ),
                     Container(
-                      width: 160.0,
+                      width: MediaQuery.of(context).size.width / 1.9,
                       height: 150.0,
                       decoration: BoxDecoration(
                         color: Colors.blue[200],
@@ -223,35 +250,74 @@ class _DashboardState extends State<Dashboard> {
           ],
         ),
       ),
-  bottomNavigationBar: BubbleBottomBar(
-        opacity: .2,
-        currentIndex: _currentIndex,
-        onTap: (index){
-          setState(() {
-           _currentIndex = index; 
-          });
-        },
-        borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
-        elevation: 8,
-        fabLocation: BubbleBottomBarFabLocation.center, //new
-        hasNotch: true, //new
-        hasInk: true, //new, gives a cute ink effect
-        inkColor: Colors.black12, //optional, uses theme color if not specified
-        items: <BubbleBottomBarItem>[
-            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.home, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.home, color: Colors.blue,), title: Text("Home")),
-            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.book, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.book, color: Colors.blue,), title: Text("Baca")),
-            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.fileVideo, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.fileVideo, color: Colors.blue,), title: Text("Ngaji")),
-            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.accountGroupOutline, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.accountGroupOutline, color: Colors.blue,), title: Text("Diskusi")),
-            BubbleBottomBarItem(backgroundColor: Colors.blueAccent, icon: Icon(MdiIcons.accountCircle, color: Colors.blueAccent,), activeIcon: Icon(MdiIcons.accountCircle, color: Colors.blue,), title: Text("Akun"))
-        ],
-      )
+      bottomNavigationBar: BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      onTap: (index){
+        print(index);
+        setState(() {
+        _bottomNavCurrentIndex = index;
+        });
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => page[_bottomNavCurrentIndex]
+        ));
+      },
+      currentIndex: _bottomNavCurrentIndex,
+      items: [
+        BottomNavigationBarItem(
+          activeIcon: Icon(
+            Icons.home,
+            color: Colors.blueAccent[400],
+          ),
+          icon: new Icon(
+              Icons.home,
+              color: Colors.grey,
+            ),
+            title: new Text(
+              'Beranda', style: TextStyle(fontFamily: "Regular"),
+            ),
+        ),
+        BottomNavigationBarItem(
+            activeIcon: new Icon(
+             MdiIcons.youtubeTv,
+              color: Colors.blueAccent[400],
+            ),
+            icon: new Icon(
+             MdiIcons.youtubeTv,
+              color: Colors.grey,
+            ),
+            title: new Text('Ngaji', style: TextStyle(fontFamily: "Regular")),
+        ),
+        BottomNavigationBarItem(
+            activeIcon: new Icon(
+               MdiIcons.bookOpen,
+              color: Colors.blueAccent[400]
+            ),
+            icon: new Icon(
+              MdiIcons.bookOpen,
+              color: Colors.grey,
+            ),
+            title: new Text('Baca', style: TextStyle(fontFamily: "Regular")),
+        ),
+        BottomNavigationBarItem(
+            activeIcon: new Icon(
+              MdiIcons.accountQuestion,
+              color: Colors.blueAccent[400],
+            ),
+            icon: new Icon(
+               MdiIcons.accountQuestion,
+              color: Colors.grey,
+            ),
+            title: new Text('Diskusi', style: TextStyle(fontFamily: "Regular")),
+        )
+      ]
+    ),
     );
   }
 }
 
 List<Soal> soal = [
   Soal("https://cdn.dribbble.com/users/1355613/screenshots/6197011/____4_2x.jpg", "Wanita"),
-  Soal("https://assets.materialup.com/uploads/75500da4-fe5c-4aa1-b77c-2c647ff08564/preview.jpg", "Asuransi"),
+  Soal("https://cdn.dribbble.com/users/101577/screenshots/4752902/couple-01.png", "Kontemporer"),
   Soal("https://assets.materialup.com/uploads/8e04f6ee-a195-4877-a5da-4c12822bc467/preview.jpg", "Muamalah"),
 ];
 

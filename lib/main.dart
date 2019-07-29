@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:utawi_iku/event.dart';
 import 'package:utawi_iku/layout.dart';
+import 'package:utawi_iku/payment.dart';
 import 'package:utawi_iku/welcome.dart';
 import 'dart:async';
 
@@ -31,13 +31,16 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void initState(){
+
+  @override
+  void initState() { 
     super.initState();
-    Timer(Duration( seconds: 3 ), (){
+    Timer(Duration(seconds: 3), () => {
       Navigator.push(context, MaterialPageRoute(
-        builder: (context) => Welcome()
-      ));
+        builder: (context) =>  Welcome()
+      ))
     });
+    
   }
 
   @override
@@ -46,7 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       body: Center(
         child: Image.asset("assets/images/utawi.jpg", width: Config.sizeWidht, height: Config.sizeHeight,),
-      ), 
+      ),
     );
   }
 }
+
+
+
