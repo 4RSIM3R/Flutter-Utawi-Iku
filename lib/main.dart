@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:utawi_iku/layout.dart';
-import 'package:utawi_iku/payment.dart';
-import 'package:utawi_iku/welcome.dart';
+import 'package:utawi_iku/view/layout.dart';
+import 'package:utawi_iku/view/welcome.dart';
 import 'dart:async';
 
-import 'login.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
